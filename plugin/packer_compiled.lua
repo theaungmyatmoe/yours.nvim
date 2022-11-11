@@ -14,7 +14,7 @@ _G._packer.inside_compile = true
 
 local time
 local profile_info
-local should_profile = false
+local should_profile = true
 if should_profile then
   local hrtime = vim.loop.hrtime
   profile_info = {}
@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/amm834/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/home/amm834/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
+    url = "https://github.com/glepnir/dashboard-nvim"
+  },
   dracula = {
     loaded = true,
     path = "/home/amm834/.local/share/nvim/site/pack/packer/start/dracula",
@@ -185,6 +190,12 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
+    config = {
+      profile = {
+        enable = true,
+        threshold = 1
+      }
+    },
     loaded = true,
     path = "/home/amm834/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
@@ -212,6 +223,9 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: packer.nvim
+time([[Config for packer.nvim]], true)
+time([[Config for packer.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

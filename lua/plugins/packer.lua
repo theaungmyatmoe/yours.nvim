@@ -26,7 +26,15 @@ end
 
 return packer.startup(function(use)
 	-- package manager
-	use("wbthomason/packer.nvim")
+	use({
+		"wbthomason/packer.nvim",
+		config = {
+			profile = {
+				enable = true,
+				threshold = 1, -- the amount in ms that a plugin's load time must be over for it to be included in the profile
+			},
+		},
+	})
 
 	-- [[ Dependencies for Most of the Packages written in Lua ]]
 	use("nvim-lua/plenary.nvim")
@@ -70,6 +78,9 @@ return packer.startup(function(use)
 		"jose-elias-alvarez/null-ls.nvim",
 		"jayp0521/mason-null-ls.nvim",
 	})
+
+	use({ "glepnir/dashboard-nvim" })
+
 	-- bootstrap packer
 	if packer_bootstrap then
 		require("packer").sync()
