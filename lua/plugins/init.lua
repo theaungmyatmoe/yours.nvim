@@ -1,0 +1,50 @@
+local ensure_packer = function()
+    local fn = vim.fn
+    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+-- auto command which reloads nvim and installs/updates/removes plugins when file is saved
+vim.cmd([[
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost init.lua source <afile> | PackerSync
+augroup end
+]])
+
+local ok, packer = pcall(require, 'packer')
+if not ok then return end
+
+return packer.startup(function(use)
+    -- package manager
+    use 'wbthomason/packer.nvim'
+
+    -- [[ Dependencies for Most of the Packages written in Lua ]]
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-tree/nvim-web-devicons'
+    use 'MunifTanjim/nui.nvim'
+
+    -- [[ User Interface  ]]
+    use {'dracula/vim', as = 'dracula'}
+    use {'akinsho/bufferline.nvim', tag = "v3.*"}
+    use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+    }
+    use 'nvim-lualine/lualine.nvim'
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'akinsho/toggleterm.nvim', tag = '*', }
+
+    -- bootstrap packer
+    if packer_bootstrap then
+        require('packer').sync()
+    end
+end)
