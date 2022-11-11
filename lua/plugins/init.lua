@@ -42,6 +42,7 @@ return packer.startup(function(use)
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use { 'akinsho/toggleterm.nvim', tag = '*', }
+    use { "windwp/nvim-autopairs" }
 
     -- bootstrap packer
     if packer_bootstrap then

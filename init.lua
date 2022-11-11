@@ -6,6 +6,8 @@ require('plugins.buffer_line')
 require('plugins.lualine')
 require('plugins.telescope')
 require('plugins.toggle_term')
+require('plugins.auto_pairs')
+
 
 require('core.options')
 require('core.keymaps')

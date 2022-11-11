@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/amm834/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/amm834/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/amm834/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
