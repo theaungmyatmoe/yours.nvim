@@ -81,6 +81,10 @@ return packer.startup(function(use)
 
 	use({ "glepnir/dashboard-nvim" })
 
+	use("lukas-reineke/indent-blankline.nvim")
+	use("norcalli/nvim-colorizer.lua")
+	use("lewis6991/gitsigns.nvim")
+
 	-- bootstrap packer
 	if packer_bootstrap then
 		require("packer").sync()
