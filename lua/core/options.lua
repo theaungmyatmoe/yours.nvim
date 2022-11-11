@@ -39,4 +39,5 @@ opt.splitbelow = true
 opt.iskeyword:append("-")
 
 
-vim.opt.guifont = { settings.appearance.font, 'h'..settings.appearance.font_size }
+opt.guifont = { settings.appearance.font, 'h'..settings.appearance.font_size }
+opt.completeopt='menu,menuone,noselect'

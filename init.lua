@@ -8,6 +8,7 @@ require('plugins.telescope')
 require('plugins.toggle_term')
 require('plugins.auto_pairs')
 
+require('plugins.nvim_cmp')
 
 require('core.options')
 require('core.keymaps')
@@ -15,4 +16,5 @@ require('core.keymaps')
 if vim.fn.has "nvim-0.8" ~= 1 or vim.version().prerelease then
     vim.schedule(function() vim.notify("Unsupported Neovim Version! Please check the requirements", "error") end)
 end
+
 
