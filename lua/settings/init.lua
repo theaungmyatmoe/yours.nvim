@@ -12,6 +12,7 @@ _G.settings =  {
         },
         telescope = {
             dropdown = true,
+            previewer = false,
         }
     }
 }

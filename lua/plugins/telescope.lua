@@ -1,4 +1,4 @@
-local ok, telescope = pcall(require, 'telesope')
+local ok, telescope = pcall(require, 'telescope')
 if not ok then 
     return 
 end
@@ -19,7 +19,11 @@ telescope.setup {
     pickers = {
         find_files = {
             theme = "dropdown",
-        }
+            previewer = false,
+            prompt_title = false,
+            prompt_prefix = ' 🔍 '
+        },
+
     },
     extensions = {
         -- Your extension configuration goes here:
@@ -29,4 +33,9 @@ telescope.setup {
         -- please take a look at the readme of the extension you want to configure
     }
 }
+
+
+
+
 telescope.load_extension('fzf')
+
