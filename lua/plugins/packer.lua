@@ -53,7 +53,6 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({ "akinsho/toggleterm.nvim", tag = "*" })
 	use({ "windwp/nvim-autopairs" })
-
 	-- [[ Auto Completions ]]
 	use({
 		"williamboman/mason.nvim",

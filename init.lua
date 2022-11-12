@@ -1,4 +1,5 @@
 require("settings")
+require("plugins.dashboard")
 require("plugins.packer")
 require("plugins.theme")
 require("plugins.neo_tree")
