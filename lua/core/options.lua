@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+opt.timeoutlen = 300
 -- line number
 opt.number = true
 opt.relativenumber = true
@@ -38,6 +39,5 @@ opt.splitbelow = true
 -- set dash as normal letter instead of divide behavior
 opt.iskeyword:append("-")
 
-
-opt.guifont = { settings.appearance.font, 'h'..settings.appearance.font_size }
-opt.completeopt='menu,menuone,noselect'
+opt.guifont = { settings.appearance.font, "h" .. settings.appearance.font_size }
+opt.completeopt = "menu,menuone,noselect"

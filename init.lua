@@ -1,4 +1,5 @@
 require("settings")
+-- require("plugins.which_key").setup()
 require("plugins.dashboard")
 require("plugins.packer")
 require("plugins.theme")
