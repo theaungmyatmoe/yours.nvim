@@ -54,11 +54,13 @@ lspconfig["html"].setup({
 	on_attach = on_attach,
 })
 
-
 lspconfig["tsserver"].setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+	root_dir = function()
+		return vim.loop.cwd()
+	end,
 })
 
 -- configure css server

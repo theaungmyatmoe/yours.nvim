@@ -4,7 +4,7 @@ local keymap = vim.keymap
 
 -- general keymaps
 
-keymap.set("i", "jk", "<ESC>")
+-- keymap.set("i", "jk", "<ESC>")
 vim.cmd([[ 
 nnoremap <C-q> :q!<CR>
 nnoremap <C-w> :bdelete<CR>
