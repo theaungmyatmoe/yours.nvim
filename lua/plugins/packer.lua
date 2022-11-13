@@ -62,69 +62,137 @@ return packer.startup(function(use)
 
     -- [[ Dependencies for Most of the Packages written in Lua ]]
     use("nvim-lua/plenary.nvim")
-    use("nvim-tree/nvim-web-devicons")
+    use({ "kyazdani42/nvim-web-devicons" })
     use("MunifTanjim/nui.nvim")
 
     -- [[ User Interface  ]]
-    use({ "dracula/vim", as = "dracula" })
-    use({ "akinsho/bufferline.nvim", tag = "v3.*" })
+    use({
+        "dracula/vim",
+        as = "dracula",
+        config = function()
+            require("plugins.theme")
+        end,
+    })
+    use({
+        "akinsho/bufferline.nvim",
+        tag = "v3.*",
+        event = "BufWinEnter",
+        config = function()
+            require("plugins.buffer_line")
+        end,
+    })
     use({
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+        },
+        cmd = { "NeoTreeFloatToggle", "NeoTreeFocusToggle" },
+        config = function()
+            require("plugins.neo_tree")
+        end,
     })
-    use("nvim-lualine/lualine.nvim")
-    use({ "nvim-telescope/telescope.nvim", tag = "0.1.0" })
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-    use({ "akinsho/toggleterm.nvim", tag = "*" })
-    use({ "windwp/nvim-autopairs" })
+    use({
+        "nvim-lualine/lualine.nvim",
+        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        event = "BufWinEnter",
+        config = function()
+            require("plugins.lualine")
+        end,
+    })
+
+    use({
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "make",
+    })
+    use({
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.0",
+        cmd = "Telescope",
+        after = { "telescope-fzf-native.nvim" },
+        config = function()
+            require("plugins.telescope")
+        end,
+    })
+    use({
+        "akinsho/toggleterm.nvim",
+        tag = "*",
+        cmd = "ToggleTerm",
+        config = function()
+            require("plugins.toggle_term")
+        end,
+    })
     -- [[ Auto Completions ]]
     use({
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
     })
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-cmdline")
-    use("hrsh7th/nvim-cmp")
-    use("saadparwaiz1/cmp_luasnip")
-    use("L3MON4D3/LuaSnip")
 
-    use("rafamadriz/friendly-snippets")
-    use("onsails/lspkind.nvim")
+    use({
+        "hrsh7th/nvim-cmp",
+        config = function()
+            require("lsp.nvim_cmp")
+        end,
+    })
+
+    use({ "hrsh7th/cmp-nvim-lsp" })
+    use({ "hrsh7th/cmp-buffer" })
+    use({ "hrsh7th/cmp-path" })
+    use({ "hrsh7th/cmp-cmdline" })
+    use({ "saadparwaiz1/cmp_luasnip" })
+    use({ "L3MON4D3/LuaSnip" })
+    use({ "hrsh7th/cmp-nvim-lua" })
+
+    use({
+        "rafamadriz/friendly-snippets",
+        module = { "cmp", "cmp_nvim_lsp" },
+        event = "InsertEnter",
+    })
+    use({ "onsails/lspkind.nvim" })
     use({
         "glepnir/lspsaga.nvim",
         branch = "main",
+        config = function()
+            require("lsp.saga")
+        end,
     })
     use({
         "jose-elias-alvarez/null-ls.nvim",
         "jayp0521/mason-null-ls.nvim",
     })
+    use({
+        "windwp/nvim-autopairs",
+        after = "nvim-cmp",
+        config = function()
+            require("plugins.auto_pairs")
+        end,
+    })
 
-    use({ "glepnir/dashboard-nvim" })
+    use({
+        "glepnir/dashboard-nvim",
+        event = "BufWinEnter",
+        config = function()
+            require("plugins.dashboard")
+        end,
+    })
 
-    use("lukas-reineke/indent-blankline.nvim")
-    use("norcalli/nvim-colorizer.lua")
+    use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead" })
+    use({ "norcalli/nvim-colorizer.lua", event = "BufRead" })
     use("lewis6991/gitsigns.nvim")
     -- lua with packer.nvim
     use({
         "max397574/better-escape.nvim",
+        event = "InsertEnter",
         config = function()
             require("better_escape").setup()
         end,
     })
 
-    -- Lua
     use({
         "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup({
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            })
-        end,
     })
     use({
         "numToStr/Comment.nvim",

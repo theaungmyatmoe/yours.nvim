@@ -8,15 +8,13 @@ if not mason_lspconfig_ok then
     return
 end
 
-local null_ls_ok, mason_null_ls = pcall(require, 'mason-null-ls')
+local null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
 if not null_ls_ok then
     return
 end
 
 -- enable mason
 mason.setup()
-
-
 
 mason_lspconfig.setup({
     -- list of servers for mason to install
@@ -27,8 +25,9 @@ mason_lspconfig.setup({
         "tailwindcss",
         "sumneko_lua",
         "emmet_ls",
+        "volar",
     },
-    automatic_installation = true, 
+    automatic_installation = true,
 })
 
 mason_null_ls.setup({

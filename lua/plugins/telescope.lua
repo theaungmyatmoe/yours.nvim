@@ -6,7 +6,7 @@ end
 telescope.setup({
     defaults = {
         prompt_prefix = " 🔭 ",
-        selection_caret = "👉 ",
+        selection_caret = "➜ ",
         width = 0.87,
         height = 0.80,
         mappings = {
