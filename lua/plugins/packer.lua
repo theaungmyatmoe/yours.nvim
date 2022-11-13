@@ -119,10 +119,6 @@ return packer.startup(function(use)
     use({
         "akinsho/toggleterm.nvim",
         tag = "*",
-        cmd = "ToggleTerm",
-        config = function()
-            require("plugins.toggle_term")
-        end,
     })
     -- [[ Auto Completions ]]
     use({
