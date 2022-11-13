@@ -32,6 +32,13 @@ if not ok then
     return
 end
 
+packer.init({
+    display = {
+        open_fn = function()
+            return require("packer.util").float({ border = "rounded" })
+        end,
+    },
+})
 return packer.startup(function(use)
     use({ "lewis6991/impatient.nvim", config = [[require('impatient')]] })
     -- package manager
@@ -42,6 +49,14 @@ return packer.startup(function(use)
                 enable = true,
                 threshold = 1, -- the amount in ms that a plugin's load time must be over for it to be included in the profile
             },
+            git = {
+                clone_timeout = 300,
+                subcommands = {
+                    update = "pull -ff-only --progress --rebase=true",
+                },
+            },
+            auto_clean = true,
+            compile_on_sync = true,
         },
     })
 
@@ -110,6 +125,9 @@ return packer.startup(function(use)
                 -- refer to the configuration section below
             })
         end,
+    })
+    use({
+        "numToStr/Comment.nvim",
     })
     -- bootstrap packer
     if packer_bootstrap then
