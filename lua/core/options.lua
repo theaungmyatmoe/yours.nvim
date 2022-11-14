@@ -1,3 +1,8 @@
+vim.cmd([[
+  filetype plugin indent on
+  syntax on
+]])
+
 local opt = vim.opt
 
 opt.timeoutlen = 300

@@ -1,4 +1,5 @@
 require("plugins.packer")
+require("plugins.tree_sitter")
 require("settings")
 require("formatters.null_ls")
 require("plugins.comment")

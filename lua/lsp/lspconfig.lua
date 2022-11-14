@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
     -- keybind options
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
-    -- set keybinds
+    -- set keybinds for lsp saga
     keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
     keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
     keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
@@ -47,6 +47,7 @@ end
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
+-- sign for gutters
 local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
@@ -98,8 +99,7 @@ lspconfig["emmet_ls"].setup({
         "css",
         "sass",
         "scss",
-        "less",
-        "svelte",
+        "vue",
     },
 })
 
@@ -155,4 +155,28 @@ lspconfig.volar.setup({
     },
 })
 
--- lspconfig.volar.setup({})
+lspconfig.intelephense.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+        intelephense = {
+            files = {
+                maxSize = 5000000,
+            },
+        },
+    },
+})
+
+local phpactor_capabilities = vim.lsp.protocol.make_client_capabilities()
+phpactor_capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+}
+
+lspconfig.phpactor.setup({
+    on_attach = on_attach,
+    capabilities = phpactor_capabilities,
+    filetypes = {
+        "php",
+    },
+})

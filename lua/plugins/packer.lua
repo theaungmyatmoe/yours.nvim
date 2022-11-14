@@ -193,6 +193,16 @@ return packer.startup(function(use)
     use({
         "numToStr/Comment.nvim",
     })
+
+    use({
+        "nvim-treesitter/nvim-treesitter",
+        run = function()
+            local ts_update =
+                require("nvim-treesitter.install").update({ with_sync = true })
+            ts_update()
+        end,
+    })
+
     -- bootstrap packer
     if packer_bootstrap then
         require("packer").sync()
