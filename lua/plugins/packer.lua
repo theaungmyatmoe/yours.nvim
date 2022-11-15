@@ -67,8 +67,7 @@ return packer.startup(function(use)
 
     -- [[ User Interface  ]]
     use({
-        "dracula/vim",
-        as = "dracula",
+        "folke/tokyonight.nvim",
         config = function()
             require("plugins.theme")
         end,

@@ -41,17 +41,16 @@ cmp.setup({
         entries = { name = "custom", selection_order = "near_cursor" },
     },
     window = {
-        -- documentation = cmp.config.window.bordered(),
-
-        -- documentation = {
-        --     border = "rounded",
-        --     winhighlight = "Normal:CmpNormal",
-        -- },
-        --     completion = {
-        --         -- winhighlight = "Normal:CmpNormal,Search:None",
-        --         winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-        --         col_offset = -2,
-        --     },
+        documentation = {
+            border = "rounded",
+            winhighlight = "Normal:CmpNormal",
+        },
+        completion = {
+            border = "rounded",
+            -- winhighlight = "Normal:CmpNormal,Search:None",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -2,
+        },
     },
     formatting = {
         fields = { "kind", "abbr", "menu" },
