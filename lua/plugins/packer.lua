@@ -89,7 +89,6 @@ return packer.startup(function(use)
             "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
         },
-        cmd = { "NeoTreeFloatToggle", "NeoTreeFocusToggle" },
         config = function()
             require("plugins.neo_tree")
         end,
@@ -201,10 +200,15 @@ return packer.startup(function(use)
                 require("nvim-treesitter.install").update({ with_sync = true })
             ts_update()
         end,
+        config = function()
+            require("plugins.tree_sitter")
+        end,
     })
 
+    use({ "windwp/nvim-ts-autotag" })
+    use({ "p00f/nvim-ts-rainbow" })
     -- bootstrap packer
     if packer_bootstrap then
-        require("packer").sync()
+        require("packer").compile_on_sync()
     end
 end)

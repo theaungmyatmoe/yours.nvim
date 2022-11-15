@@ -6,6 +6,11 @@ vim.cmd([[
 local opt = vim.opt
 
 opt.timeoutlen = 300
+vim.opt.title = true -- set the title of window to the value of the titlestring
+vim.opt.titlestring = "%<%F - nvim" -- what the title of the window will be set to
+vim.opt.undofile = true -- enable persistent undo
+vim.opt.updatetime = 300 -- faster completion
+
 -- line number
 opt.number = true
 opt.relativenumber = true
@@ -33,7 +38,6 @@ opt.signcolumn = "yes" -- enable specific highlights in debug mode
 
 -- backspace settings
 opt.backspace = "indent,eol,start"
-
 -- enable native clipboard instead of vim default clipboard behavior
 opt.clipboard:append("unnamedplus")
 
@@ -46,3 +50,4 @@ opt.iskeyword:append("-")
 
 opt.guifont = { settings.appearance.font, "h" .. settings.appearance.font_size }
 opt.completeopt = "menu,menuone,noselect"
+opt.showmode = false
