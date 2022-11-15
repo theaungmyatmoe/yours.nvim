@@ -13,6 +13,12 @@ if not lspkind_ok then
     return
 end
 
+local format = lspkind.cmp_format({
+    preset = "codicons",
+    mode = "symbol_text",
+    maxwidth = 50,
+})
+
 -- snippet lazy loading
 require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -28,30 +34,52 @@ local has_words_before = function()
 end
 
 cmp.setup({
-    -- vscode icon injection via lspkind
-    formatting = {
-        format = lspkind.cmp_format({
-            mode = "symbol_text",
-            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+    experimental = {
+        ghost_text = true,
+    },
+    view = {
+        entries = { name = "custom", selection_order = "near_cursor" },
+    },
+    window = {
+        -- documentation = cmp.config.window.bordered(),
 
-            -- The function below will be called before any actual modifications from lspkind
-            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-            before = function(_, vim_item)
-                return vim_item
-            end,
-        }),
+        -- documentation = {
+        --     border = "rounded",
+        --     winhighlight = "Normal:CmpNormal",
+        -- },
+        --     completion = {
+        --         -- winhighlight = "Normal:CmpNormal,Search:None",
+        --         winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+        --         col_offset = -2,
+        --     },
+    },
+    formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+            local original_kind = vim_item.kind
+            local kind = format(entry, vim_item)
+
+            -- Split the kind from lspkind into two parts so we can place the icon
+            -- on the left and the text on the right. This allows for quick scanning
+            -- on the left near the text while still providing the full completion
+            -- information if needed.
+            ---@diagnostic disable-next-line: param-type-mismatch
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+
+            kind.kind = strings[1] .. " "
+            kind.menu = "   " .. strings[2]
+
+            -- Highlight the menu text the same as the kind icon
+            kind.menu_hl_group = "CmpItemKind" .. original_kind
+
+            return kind
+        end,
     },
     snippet = {
         -- Specify a snippet engines to load in completion menu
         expand = function(args)
             luasnip.lsp_expand(args.body)
         end,
-    },
-    -- completion window ui customization
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -75,8 +103,8 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-        ["<C-k>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-j>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -89,17 +117,23 @@ cmp.setup({
     }),
 })
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ "/", "?" }, {
+local no_format = {
+    fields = { "abbr" },
+}
+
+-- Use buffer source for '/'
+cmp.setup.cmdline({ "/" }, {
     mapping = cmp.mapping.preset.cmdline(),
+    formatting = no_format,
     sources = {
         { name = "buffer" },
     },
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- Use cmdline & path source for ':'
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
+    formatting = no_format,
     sources = cmp.config.sources({
         { name = "path" },
     }, {

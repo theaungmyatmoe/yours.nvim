@@ -18,11 +18,13 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 -- ctrl + \ and ctrl + n to get back to normal mode form term mode
 toggle_term.setup({
+    width = 13,
     open_mapping = [[<C-\>]],
-    direction = "float", --"vertical" | "horizontal" | "tab" | "float",
+    direction = "horizontal", --"vertical" | "horizontal" | "tab" | "float",
     float_opts = {
         border = "curved",
     },
+    start_in_insert = true,
     winbar = {
         enabled = false,
         name_formatter = function(term) --  term: Terminal
