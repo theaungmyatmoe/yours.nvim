@@ -34,22 +34,18 @@ local has_words_before = function()
 end
 
 cmp.setup({
-    experimental = {
-        ghost_text = true,
-    },
     view = {
         entries = { name = "custom", selection_order = "near_cursor" },
     },
     window = {
-        documentation = {
-            border = "rounded",
-            winhighlight = "Normal:CmpNormal",
-        },
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
         completion = {
-            border = "rounded",
-            -- winhighlight = "Normal:CmpNormal,Search:None",
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-            col_offset = -2,
+            col_offset = -3,
+        },
+        documentation = {
+            col_offset = 3,
         },
     },
     formatting = {
