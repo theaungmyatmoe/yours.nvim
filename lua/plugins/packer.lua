@@ -66,6 +66,8 @@ return packer.startup(function(use)
     use("MunifTanjim/nui.nvim")
 
     -- [[ User Interface  ]]
+
+    use({ "dracula/vim", as = "dracula" })
     use({
         "folke/tokyonight.nvim",
         config = function()
@@ -208,6 +210,6 @@ return packer.startup(function(use)
     use({ "p00f/nvim-ts-rainbow" })
     -- bootstrap packer
     if packer_bootstrap then
-        require("packer").compile_on_sync()
+        require("packer").sync()
     end
 end)

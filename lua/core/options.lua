@@ -51,3 +51,9 @@ opt.iskeyword:append("-")
 opt.guifont = { settings.appearance.font, "h" .. settings.appearance.font_size }
 opt.completeopt = "menu,menuone,noselect"
 opt.showmode = false
+
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+--
+--Lua:
+vim.g.material_style = "oceanic"

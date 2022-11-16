@@ -1,6 +1,6 @@
 _G.settings = {
     appearance = {
-        theme = "tokyonight-moon",
+        theme = "dracula",
         font = "Jetbrains Mono",
         font_size = 14,
     },

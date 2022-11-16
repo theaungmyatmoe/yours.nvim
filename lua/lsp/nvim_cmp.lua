@@ -13,6 +13,8 @@ if not lspkind_ok then
     return
 end
 
+vim.opt.completeopt = "menu,menuone,noselect"
+
 local format = lspkind.cmp_format({
     preset = "codicons",
     mode = "symbol_text",
@@ -38,15 +40,12 @@ cmp.setup({
         entries = { name = "custom", selection_order = "near_cursor" },
     },
     window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
         completion = {
+            -- border = "rounded",
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             col_offset = -3,
         },
-        documentation = {
-            col_offset = 3,
-        },
+        documentation = {},
     },
     formatting = {
         fields = { "kind", "abbr", "menu" },
