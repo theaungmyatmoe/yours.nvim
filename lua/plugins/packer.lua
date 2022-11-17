@@ -1,17 +1,17 @@
 local ensure_packer = function()
     local fn = vim.fn
-    local install_path = fn.stdpath("data")
+    local install_path = fn.stdpath "data"
         .. "/site/pack/packer/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({
+        fn.system {
             "git",
             "clone",
             "--depth",
             "1",
             "https://github.com/wbthomason/packer.nvim",
             install_path,
-        })
-        vim.cmd([[packadd packer.nvim]])
+        }
+        vim.cmd [[packadd packer.nvim]]
         return true
     end
     return false
@@ -20,29 +20,29 @@ end
 local packer_bootstrap = ensure_packer()
 
 -- auto command which reloads nvim and installs/updates/removes plugins when file is saved
-vim.cmd([[
+vim.cmd [[
 augroup packer_user_config
 autocmd!
 autocmd BufWritePost packer.lua source <afile> | PackerSync
 augroup end
-]])
+]]
 
 local ok, packer = pcall(require, "packer")
 if not ok then
     return
 end
 
-packer.init({
+packer.init {
     display = {
         open_fn = function()
-            return require("packer.util").float({ border = "rounded" })
+            return require("packer.util").float { border = "rounded" }
         end,
     },
-})
+}
 return packer.startup(function(use)
-    use({ "lewis6991/impatient.nvim", config = [[require('impatient')]] })
+    use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
     -- package manager
-    use({
+    use {
         "wbthomason/packer.nvim",
         config = {
             profile = {
@@ -58,31 +58,32 @@ return packer.startup(function(use)
             auto_clean = true,
             compile_on_sync = true,
         },
-    })
+    }
 
     -- [[ Dependencies for Most of the Packages written in Lua ]]
-    use("nvim-lua/plenary.nvim")
-    use({ "kyazdani42/nvim-web-devicons" })
-    use("MunifTanjim/nui.nvim")
+    use "nvim-lua/plenary.nvim"
+    use { "kyazdani42/nvim-web-devicons" }
+    use "MunifTanjim/nui.nvim"
 
     -- [[ User Interface  ]]
 
-    use({ "dracula/vim", as = "dracula" })
-    use({
-        "folke/tokyonight.nvim",
+    -- "folke/tokyonight.nvim",
+    use {
+        "dracula/vim",
+        as = "dracula",
         config = function()
-            require("plugins.theme")
+            require "plugins.theme"
         end,
-    })
-    use({
+    }
+    use {
         "akinsho/bufferline.nvim",
         tag = "v3.*",
         event = "BufWinEnter",
         config = function()
-            require("plugins.buffer_line")
+            require "plugins.buffer_line"
         end,
-    })
-    use({
+    }
+    use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
         requires = {
@@ -91,125 +92,137 @@ return packer.startup(function(use)
             "MunifTanjim/nui.nvim",
         },
         config = function()
-            require("plugins.neo_tree")
+            require "plugins.neo_tree"
         end,
-    })
-    use({
+    }
+    use {
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
         event = "BufWinEnter",
         config = function()
-            require("plugins.lualine")
+            require "plugins.lualine"
         end,
-    })
+    }
 
-    use({
+    use {
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "make",
-    })
-    use({
+    }
+    use {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.0",
         cmd = "Telescope",
         after = { "telescope-fzf-native.nvim" },
         config = function()
-            require("plugins.telescope")
+            require "plugins.telescope"
         end,
-    })
-    use({
+    }
+    use {
         "akinsho/toggleterm.nvim",
         tag = "*",
-    })
+    }
     -- [[ Auto Completions ]]
-    use({
+    use {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
-    })
+    }
 
-    use({
+    use {
         "hrsh7th/nvim-cmp",
         config = function()
-            require("lsp.nvim_cmp")
+            require "lsp.nvim_cmp"
         end,
-    })
+    }
 
-    use({ "hrsh7th/cmp-nvim-lsp" })
-    use({ "hrsh7th/cmp-buffer" })
-    use({ "hrsh7th/cmp-path" })
-    use({ "hrsh7th/cmp-cmdline" })
-    use({ "saadparwaiz1/cmp_luasnip" })
-    use({ "L3MON4D3/LuaSnip" })
-    use({ "hrsh7th/cmp-nvim-lua" })
+    use { "hrsh7th/cmp-nvim-lsp" }
+    use { "hrsh7th/cmp-buffer" }
+    use { "hrsh7th/cmp-path" }
+    use { "hrsh7th/cmp-cmdline" }
+    use { "saadparwaiz1/cmp_luasnip" }
+    use { "L3MON4D3/LuaSnip" }
+    use { "hrsh7th/cmp-nvim-lua" }
 
-    use({
+    use {
         "rafamadriz/friendly-snippets",
         module = { "cmp", "cmp_nvim_lsp" },
         event = "InsertEnter",
-    })
-    use({ "onsails/lspkind.nvim" })
-    use({
+    }
+    use { "onsails/lspkind.nvim" }
+    use {
         "glepnir/lspsaga.nvim",
         branch = "main",
         config = function()
-            require("lsp.saga")
+            require "lsp.saga"
         end,
-    })
-    use({
+    }
+    use {
         "jose-elias-alvarez/null-ls.nvim",
         "jayp0521/mason-null-ls.nvim",
-    })
-    use({
+    }
+    use {
         "windwp/nvim-autopairs",
         after = "nvim-cmp",
         config = function()
-            require("plugins.auto_pairs")
+            require "plugins.auto_pairs"
         end,
-    })
+    }
 
-    use({
+    use {
         "glepnir/dashboard-nvim",
         event = "BufWinEnter",
         config = function()
-            require("plugins.dashboard")
+            require "plugins.dashboard"
         end,
-    })
+    }
 
-    use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead" })
-    use({ "norcalli/nvim-colorizer.lua", event = "BufRead" })
-    use("lewis6991/gitsigns.nvim")
+    use { "lukas-reineke/indent-blankline.nvim", event = "BufRead" }
+    use { "norcalli/nvim-colorizer.lua", event = "BufRead" }
+    use "lewis6991/gitsigns.nvim"
     -- lua with packer.nvim
-    use({
+    use {
         "max397574/better-escape.nvim",
         event = "InsertEnter",
         config = function()
             require("better_escape").setup()
         end,
-    })
+    }
 
-    use({
+    use {
         "folke/which-key.nvim",
-    })
-    use({
+    }
+    use {
         "numToStr/Comment.nvim",
-    })
-
-    use({
+    }
+    use "folke/lsp-colors.nvim"
+    use {
         "nvim-treesitter/nvim-treesitter",
         run = function()
             local ts_update =
-                require("nvim-treesitter.install").update({ with_sync = true })
+                require("nvim-treesitter.install").update { with_sync = true }
             ts_update()
         end,
         config = function()
-            require("plugins.tree_sitter")
+            require "plugins.tree_sitter"
         end,
-    })
+    }
 
-    use({ "windwp/nvim-ts-autotag" })
-    use({ "p00f/nvim-ts-rainbow" })
+    use { "windwp/nvim-ts-autotag" }
+    use { "p00f/nvim-ts-rainbow" }
+    -- Lua
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end,
+    }
     -- bootstrap packer
     if packer_bootstrap then
-        require("packer").sync()
+        packer.sync()
     end
 end)

@@ -4,11 +4,10 @@ local keymap = vim.keymap
 
 -- general keymaps
 
--- keymap.set("i", "jk", "<ESC>")
-vim.cmd([[ 
+vim.cmd [[ 
 nnoremap <C-q> :q!<CR>
 nnoremap <C-w> :bdelete<CR>
-]])
+]]
 keymap.set("i", "<C-s>", ":w<CR>")
 keymap.set("n", "<C-a>", "gg<S-v>G")
 -- remove searched highlight
@@ -16,10 +15,6 @@ keymap.set("n", "<leader>nh", ":nohl<CR>")
 
 -- delete single word without copying
 keymap.set("n", "x", "_x")
-
--- auto increment and decrement
-keymap.set("n", "<leader>+", "<C-a>")
-keymap.set("n", "<leader>-", "<C-x>")
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
@@ -42,11 +37,11 @@ keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- file browser
-keymap.set("n", "<leader>ff", ":NeoTreeFloatToggle<CR>", { silent = true })
+keymap.set("n", "<leader>ee", ":NeoTreeFloatToggle<CR>", { silent = true })
 keymap.set("n", "<A-1>", ":NeoTreeFocusToggle<CR>", { silent = true })
 
 -- telescope
-keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance

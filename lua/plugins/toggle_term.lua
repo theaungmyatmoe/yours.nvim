@@ -1,4 +1,5 @@
 local ok, toggle_term = pcall(require, "toggleterm")
+
 if not ok then
     return
 end
@@ -14,10 +15,10 @@ function _G.set_terminal_keymaps()
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
 
 -- ctrl + \ and ctrl + n to get back to normal mode form term mode
-toggle_term.setup({
+toggle_term.setup {
     width = 13,
     open_mapping = [[<C-\>]],
     direction = "horizontal", --"vertical" | "horizontal" | "tab" | "float",
@@ -31,4 +32,4 @@ toggle_term.setup({
             return term.name
         end,
     },
-})
+}

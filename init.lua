@@ -1,9 +1,11 @@
-require("plugins.packer")
-require("settings")
-require("formatters.null_ls")
-require("plugins.comment")
-require("lsp.lspconfig")
-require("lsp.mason")
-require("core.options")
-require("core.keymaps")
-require("plugins.toggle_term")
+require "plugins.packer"
+require "settings"
+require "formatters.null_ls"
+require "plugins.comment"
+require "lsp.lspconfig"
+require "lsp.mason"
+require "core.options"
+require "core.keymaps"
+require "plugins.toggle_term"
+require "plugins.gitsigns"
+require "plugins.which_key"

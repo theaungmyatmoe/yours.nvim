@@ -1,7 +1,7 @@
-vim.cmd([[
+vim.cmd [[
   filetype plugin indent on
   syntax on
-]])
+]]
 
 local opt = vim.opt
 
@@ -39,14 +39,14 @@ opt.signcolumn = "yes" -- enable specific highlights in debug mode
 -- backspace settings
 opt.backspace = "indent,eol,start"
 -- enable native clipboard instead of vim default clipboard behavior
-opt.clipboard:append("unnamedplus")
+opt.clipboard:append "unnamedplus"
 
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
 
 -- set dash as normal letter instead of divide behavior
-opt.iskeyword:append("-")
+opt.iskeyword:append "-"
 
 opt.guifont = { settings.appearance.font, "h" .. settings.appearance.font_size }
 opt.completeopt = "menu,menuone,noselect"

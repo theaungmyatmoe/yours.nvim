@@ -4,7 +4,7 @@ if not ok then
     return
 end
 
-neo_tree.setup({
+neo_tree.setup {
     close_if_last_window = false,
     enable_diagnostics = true,
     enable_git_status = true,
@@ -18,7 +18,7 @@ neo_tree.setup({
             indent_marker = "│",
             last_indent_marker = "└",
             highlight = "NeoTreeIndentMarker",
-            with_expanders = false,
+            with_expanders = true,
             expander_collapsed = "",
             expander_expanded = "",
             expander_highlight = "NeoTreeExpander",
@@ -40,7 +40,7 @@ neo_tree.setup({
                 modified = "",
                 renamed = "➜",
                 untracked = "★",
-                ignored = "◌",
+                ignored = "",
                 unstaged = "✗",
                 staged = "✓",
                 conflict = "",
@@ -54,4 +54,4 @@ neo_tree.setup({
         },
     },
     window = { width = 25 },
-})
+}

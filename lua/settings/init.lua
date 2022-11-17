@@ -1,5 +1,6 @@
 _G.settings = {
     appearance = {
+        -- NeoSolarized
         theme = "dracula",
         font = "Jetbrains Mono",
         font_size = 14,
