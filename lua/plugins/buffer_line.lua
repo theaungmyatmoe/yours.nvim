@@ -1,10 +1,10 @@
 local status, bufferline = pcall(require, "bufferline")
 if not status then
-    print("not working")
+    print "not working"
     return
 end
 
-bufferline.setup({})
+bufferline.setup {}
 
 -- prev and next
 vim.keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", {})

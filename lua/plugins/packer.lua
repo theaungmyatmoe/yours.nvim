@@ -67,12 +67,6 @@ return packer.startup(function(use)
 
     -- [[ User Interface  ]]
 
-    -- "folke/tokyonight.nvim",
-    use { "sainnhe/sonokai" }
-    use {
-        "https://gitlab.com/__tpb/monokai-pro.nvim",
-        config = function() end,
-    }
     use {
         "dracula/vim",
         as = "dracula",
