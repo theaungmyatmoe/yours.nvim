@@ -24,10 +24,11 @@ neo_tree.setup {
             expander_highlight = "NeoTreeExpander",
         },
         icon = {
-            folder_closed = "",
-            folder_open = "",
-            folder_empty = "",
+            folder_closed = "",
+            folder_open = "",
+            folder_empty = "",
             default = "",
+            highlight = "NeoTreeFileIcon",
         },
         name = {
             trailing_slash = false,
@@ -38,9 +39,9 @@ neo_tree.setup {
                 added = "",
                 deleted = "",
                 modified = "",
-                renamed = "➜",
+                renamed = "",
                 untracked = "★",
-                ignored = "",
+                ignored = "",
                 unstaged = "✗",
                 staged = "✓",
                 conflict = "",
@@ -53,5 +54,5 @@ neo_tree.setup {
             hide_gitignored = false,
         },
     },
-    window = { width = 25 },
+    window = { width = 30 },
 }

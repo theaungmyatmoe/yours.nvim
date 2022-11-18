@@ -16,7 +16,7 @@ end
 -- enable mason
 mason.setup()
 
-mason_lspconfig.setup({
+mason_lspconfig.setup {
     -- list of servers for mason to install
     ensure_installed = {
         "tsserver",
@@ -28,9 +28,9 @@ mason_lspconfig.setup({
         "volar",
     },
     automatic_installation = true,
-})
+}
 
-mason_null_ls.setup({
+mason_null_ls.setup {
     -- list of formatters & linters for mason to install
     ensure_installed = {
         "prettier", -- ts/js formatter
@@ -39,4 +39,11 @@ mason_null_ls.setup({
     },
     -- auto-install configured formatters & linters (with null-ls)
     automatic_installation = true,
-})
+}
+
+vim.cmd [[ 
+    augroup vim_formatter
+    autocmd!
+    autocmd BufWritePost *.vim :normal gg=G
+    augroup END
+]]

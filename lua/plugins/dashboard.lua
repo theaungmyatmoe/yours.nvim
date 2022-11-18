@@ -1,4 +1,4 @@
-local db = require("dashboard")
+local db = require "dashboard"
 -- hi DashboardHeader guifg=your color
 
 db.custom_header = {
@@ -21,13 +21,13 @@ db.custom_center = {
         icon = "🔭  ",
         desc = "Search Files                           ",
         action = "Telescope find_files",
-        shortcut = "Space Space",
+        shortcut = "Space f f",
     },
     {
         icon = "  ",
         desc = "File Explorer                           ",
         action = "NeoTreeFloatToggle",
-        shortcut = "Space f f",
+        shortcut = "Space e e",
     },
     {
         icon = "  ",

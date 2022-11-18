@@ -32,7 +32,6 @@ local opts = {
 }
 
 local mappings = {
-    ["w"] = { "<cmd>update!<cr>", "Save" },
     ["q"] = { "<cmd>q!<cr>", "Quit" },
     f = {
         name = "File",

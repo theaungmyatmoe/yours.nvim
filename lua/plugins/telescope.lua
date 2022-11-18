@@ -3,7 +3,7 @@ if not ok then
     return
 end
 
-telescope.setup({
+telescope.setup {
     defaults = {
         prompt_prefix = " 🔭 ",
         selection_caret = "➜ ",
@@ -22,10 +22,10 @@ telescope.setup({
         find_files = {
             theme = "dropdown",
             previewer = false,
-            prompt_title = false,
+            prompt_title = "Search Files",
         },
     },
     extensions = {},
-})
+}
 
-telescope.load_extension("fzf")
+telescope.load_extension "fzf"

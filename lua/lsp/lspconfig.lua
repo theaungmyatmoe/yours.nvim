@@ -55,12 +55,12 @@ for type, icon in pairs(signs) do
 end
 
 -- configure html server
-lspconfig["html"].setup({
+lspconfig["html"].setup {
     capabilities = capabilities,
     on_attach = on_attach,
-})
+}
 
-lspconfig["tsserver"].setup({
+lspconfig["tsserver"].setup {
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = {
@@ -74,22 +74,22 @@ lspconfig["tsserver"].setup({
     root_dir = function()
         return vim.loop.cwd()
     end,
-})
+}
 
 -- configure css server
-lspconfig["cssls"].setup({
+lspconfig["cssls"].setup {
     capabilities = capabilities,
     on_attach = on_attach,
-})
+}
 
 -- configure tailwindcss server
-lspconfig["tailwindcss"].setup({
+lspconfig["tailwindcss"].setup {
     capabilities = capabilities,
     on_attach = on_attach,
-})
+}
 
 -- configure emmet language server
-lspconfig["emmet_ls"].setup({
+lspconfig["emmet_ls"].setup {
     capabilities = capabilities,
     on_attach = on_attach,
     filetypes = {
@@ -101,10 +101,10 @@ lspconfig["emmet_ls"].setup({
         "scss",
         "vue",
     },
-})
+}
 
 -- configure lua server (with special settings)
-lspconfig["sumneko_lua"].setup({
+lspconfig["sumneko_lua"].setup {
     capabilities = capabilities,
     on_attach = on_attach,
     settings = { -- custom settings for lua
@@ -116,18 +116,18 @@ lspconfig["sumneko_lua"].setup({
             workspace = {
                 -- make language server aware of runtime files
                 library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.stdpath("config") .. "/lua"] = true,
+                    [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                    [vim.fn.stdpath "config" .. "/lua"] = true,
                 },
             },
         },
     },
-})
+}
 
-local util = require("lspconfig.util")
+local util = require "lspconfig.util"
 local path = util.path
 local volar_path =
-    path.join(vim.fn.stdpath("data"), "lsp_servers", "volar", "node_modules")
+    path.join(vim.fn.stdpath "data", "lsp_servers", "volar", "node_modules")
 local global_ts_server_path = path.join(volar_path, "typescript", "lib")
 
 local function get_typescript_lib_path(root_dir)
@@ -137,7 +137,7 @@ local function get_typescript_lib_path(root_dir)
         or global_ts_server_path
 end
 
-lspconfig.volar.setup({
+lspconfig.volar.setup {
     init_options = {
         typescript = {
             tsdk = "",
@@ -153,9 +153,9 @@ lspconfig.volar.setup({
     settings = {
         volar = { autoCompleteRefs = true },
     },
-})
+}
 
-lspconfig.intelephense.setup({
+lspconfig.intelephense.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     settings = {
@@ -165,7 +165,7 @@ lspconfig.intelephense.setup({
             },
         },
     },
-})
+}
 
 local phpactor_capabilities = vim.lsp.protocol.make_client_capabilities()
 phpactor_capabilities.textDocument.foldingRange = {
@@ -173,13 +173,13 @@ phpactor_capabilities.textDocument.foldingRange = {
     lineFoldingOnly = true,
 }
 
-lspconfig.phpactor.setup({
+lspconfig.phpactor.setup {
     on_attach = on_attach,
     capabilities = phpactor_capabilities,
     filetypes = {
         "php",
     },
-})
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -190,3 +190,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
         },
         update_in_insert = true,
     })
+
+lspconfig["vimls"].setup {}

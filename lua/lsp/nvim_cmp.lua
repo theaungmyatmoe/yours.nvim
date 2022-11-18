@@ -15,11 +15,11 @@ end
 
 vim.opt.completeopt = "menu,menuone,noselect"
 
-local format = lspkind.cmp_format({
+local format = lspkind.cmp_format {
     preset = "codicons",
     mode = "symbol_text",
     maxwidth = 50,
-})
+}
 
 -- snippet lazy loading
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -31,11 +31,11 @@ local has_words_before = function()
         and vim.api
                 .nvim_buf_get_lines(0, line - 1, line, true)[1]
                 :sub(col, col)
-                :match("%s")
+                :match "%s"
             == nil
 end
 
-cmp.setup({
+cmp.setup {
     view = {
         entries = { name = "custom", selection_order = "near_cursor" },
     },
@@ -75,7 +75,7 @@ cmp.setup({
             luasnip.lsp_expand(args.body)
         end,
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = cmp.mapping.preset.insert {
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -101,15 +101,15 @@ cmp.setup({
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-    sources = cmp.config.sources({
+        ["<CR>"] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    },
+    sources = cmp.config.sources {
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
-    }),
-})
+    },
+}
 
 local no_format = {
     fields = { "abbr" },
