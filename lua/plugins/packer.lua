@@ -68,6 +68,11 @@ return packer.startup(function(use)
     -- [[ User Interface  ]]
 
     -- "folke/tokyonight.nvim",
+    use { "sainnhe/sonokai" }
+    use {
+        "https://gitlab.com/__tpb/monokai-pro.nvim",
+        config = function() end,
+    }
     use {
         "dracula/vim",
         as = "dracula",
@@ -178,7 +183,12 @@ return packer.startup(function(use)
 
     use { "lukas-reineke/indent-blankline.nvim", event = "BufRead" }
     use { "norcalli/nvim-colorizer.lua", event = "BufRead" }
-    use "lewis6991/gitsigns.nvim"
+    use {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require "plugins.gitsigns"
+        end,
+    }
     -- lua with packer.nvim
     use {
         "max397574/better-escape.nvim",

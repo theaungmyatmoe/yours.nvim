@@ -56,4 +56,7 @@ opt.showmode = false
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
 --
 --Lua:
-vim.g.material_style = "oceanic"
+-- vim.g.material_style = "oceanic"
+
+vim.g.sonokai_style = "shusia"
+vim.g.sonokai_better_performance = 1
