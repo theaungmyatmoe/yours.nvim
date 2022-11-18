@@ -54,5 +54,5 @@ neo_tree.setup {
             hide_gitignored = false,
         },
     },
-    window = { width = 30 },
+    window = { width = 25 },
 }

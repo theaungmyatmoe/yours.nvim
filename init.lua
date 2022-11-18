@@ -1,4 +1,4 @@
-require "plugins.packer"
+require "plugin_manager.packer"
 require "settings"
 require "formatters.null_ls"
 require "plugins.comment"

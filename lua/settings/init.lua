@@ -2,7 +2,8 @@ _G.settings = {
     appearance = {
         -- NeoSolarized
         theme = "dracula",
-        font = "Jetbrains Mono",
+        -- vim.cmd [[set guifont=JetBrainsMono\ Nerd\ Font:h12]]
+        font = "JetbrainsMono Nerd Font",
         font_size = 14,
     },
     user_interface = {

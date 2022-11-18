@@ -21,6 +21,11 @@ local format = lspkind.cmp_format {
     maxwidth = 50,
 }
 
+luasnip.config.set_config {
+    update_events = "TextChanged,TextChangedI",
+    delete_check_events = "TextChanged,InsertLeave",
+}
+
 -- snippet lazy loading
 require("luasnip.loaders.from_vscode").lazy_load()
 

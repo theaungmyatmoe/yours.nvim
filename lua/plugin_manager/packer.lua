@@ -40,7 +40,7 @@ packer.init {
     },
 }
 return packer.startup(function(use)
-    use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
+    -- use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
     -- package manager
     use {
         "wbthomason/packer.nvim",
@@ -55,18 +55,15 @@ return packer.startup(function(use)
                     update = "pull -ff-only --progress --rebase=true",
                 },
             },
-            auto_clean = true,
-            compile_on_sync = true,
         },
     }
 
     -- [[ Dependencies for Most of the Packages written in Lua ]]
     use "nvim-lua/plenary.nvim"
-    use { "kyazdani42/nvim-web-devicons" }
     use "MunifTanjim/nui.nvim"
 
-    -- [[ User Interface  ]]
-
+    -- [[ User Interface ]]
+    -- theme
     use {
         "dracula/vim",
         as = "dracula",
@@ -74,9 +71,14 @@ return packer.startup(function(use)
             require "plugins.theme"
         end,
     }
+
+    -- tab bar
     use {
         "akinsho/bufferline.nvim",
         tag = "v3.*",
+        requires = {
+            { "nvim-tree/nvim-web-devicons", opt = true },
+        },
         event = "BufWinEnter",
         config = function()
             require "plugins.buffer_line"
@@ -120,12 +122,14 @@ return packer.startup(function(use)
         "akinsho/toggleterm.nvim",
         tag = "*",
     }
-    -- [[ Auto Completions ]]
-    use {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-    }
+
+    -- lsp
+
+    use { "neovim/nvim-lspconfig" }
+
+    use { "williamboman/mason.nvim" }
+
+    use { "williamboman/mason-lspconfig.nvim" }
 
     use {
         "hrsh7th/nvim-cmp",
