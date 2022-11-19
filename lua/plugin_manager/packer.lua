@@ -40,6 +40,12 @@ packer.init {
     },
 }
 return packer.startup(function(use)
+    use {
+        "lewis6991/impatient.nvim",
+        config = function()
+            require "impatient"
+        end,
+    }
     -- package manager
     use {
         "wbthomason/packer.nvim",
@@ -79,6 +85,7 @@ return packer.startup(function(use)
     use {
         "glepnir/dashboard-nvim",
         event = "BufWinEnter",
+        cmd = { "Dashboard", "DashboardNewFile" },
         config = function()
             require "plugins.dashboard"
         end,
@@ -94,12 +101,12 @@ return packer.startup(function(use)
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
+        event = "BufWinEnter",
         requires = {
             { "nvim-lua/plenary.nvim", opt = true },
             { "kyazdani42/nvim-web-devicons", opt = true },
             { "MunifTanjim/nui.nvim", opt = true },
         },
-        event = "BufWinEnter",
         config = function()
             require "plugins.neo_tree"
         end,
@@ -134,15 +141,16 @@ return packer.startup(function(use)
     }
 
     use {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        run = "make",
-    }
-    use {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.0",
-        requires = "telescope-fzf-native.nvim",
-        -- cmd = "Telescope",
-        after = { "telescope-fzf-native.nvim" },
+        requires = {
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                run = "make",
+            },
+            { "nvim-lua/plenary.nvim" },
+        },
+        cmd = "Telescope",
         config = function()
             require "plugins.telescope"
         end,
@@ -213,30 +221,42 @@ return packer.startup(function(use)
             require "plugins.tree_sitter"
         end,
     }
-    use { "windwp/nvim-ts-autotag" }
-    use { "p00f/nvim-ts-rainbow" }
+    use { "windwp/nvim-ts-autotag", after = "nvim-treesitter" }
+    use { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" }
 
     -- [[ Language Server Protocol and Snippet Engine ]]
-    use { "neovim/nvim-lspconfig" }
+    use {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require "lsp.lspconfig"
+        end,
+    }
     use { "williamboman/mason.nvim" }
-    use { "williamboman/mason-lspconfig.nvim" }
+    use {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require "lsp.mason"
+        end,
+    }
 
     use {
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter", -- this make disable icon color
+        wants = { "LuaSnip" },
+        requires = { --- Autocompletion
+            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+            { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+            { "hrsh7th/cmp-path", after = "nvim-cmp" },
+            { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+            { "L3MON4D3/LuaSnip" },
+        },
         config = function()
             require "lsp.nvim_cmp"
         end,
     }
     use { "hrsh7th/cmp-nvim-lsp" } -- builtin lsp complete
-    use { "hrsh7th/cmp-buffer" }
-    use { "hrsh7th/cmp-path" }
-    use { "hrsh7th/cmp-cmdline" }
-
-    use { "L3MON4D3/LuaSnip" } -- snippet engine
-
-    -- snippet sources
-    use { "hrsh7th/cmp-nvim-lua" }
-    use { "saadparwaiz1/cmp_luasnip" }
 
     -- vscode like auto complete
     use {
@@ -248,6 +268,7 @@ return packer.startup(function(use)
     use {
         "glepnir/lspsaga.nvim",
         branch = "main",
+        event = "BufRead",
         config = function()
             require "lsp.saga"
         end,
@@ -256,9 +277,18 @@ return packer.startup(function(use)
 
     -- [[ Linter and Formatter ]]
     use {
-        "jose-elias-alvarez/null-ls.nvim",
         "jayp0521/mason-null-ls.nvim",
-    }
+        config = function()
+            require "formatters.mason_null_ls"
+        end,
+    } -- linter and formatter installer
+
+    use {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            require "formatters.null_ls"
+        end,
+    } -- formatter
 
     if packer_bootstrap then
         packer.sync()

@@ -77,7 +77,7 @@ cmp.setup {
     snippet = {
         -- Specify a snippet engines to load in completion menu
         expand = function(args)
-            luasnip.lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
         end,
     },
     mapping = cmp.mapping.preset.insert {
