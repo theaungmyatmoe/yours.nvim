@@ -40,7 +40,6 @@ packer.init {
     },
 }
 return packer.startup(function(use)
-    -- use { "lewis6991/impatient.nvim", config = [[require('impatient')]] }
     -- package manager
     use {
         "wbthomason/packer.nvim",
@@ -58,12 +57,12 @@ return packer.startup(function(use)
         },
     }
 
-    -- [[ Dependencies for Most of the Packages written in Lua ]]
-    use "nvim-lua/plenary.nvim"
-    use "MunifTanjim/nui.nvim"
+    -- [[ general dependencies ]]
+    use { "nvim-lua/plenary.nvim" }
+    use { "MunifTanjim/nui.nvim" }
+    use { "nvim-tree/nvim-web-devicons" }
 
-    -- [[ User Interface ]]
-    -- theme
+    -- [[ theme ]]
     use {
         "dracula/vim",
         as = "dracula",
@@ -72,7 +71,40 @@ return packer.startup(function(use)
         end,
     }
 
-    -- tab bar
+    -- [[ Integrated GUI Layer ]]
+    -- Startup Dashboard, Key Menu, File Explorer, Tab Bar, Status Line, Terminal, Search Everywhere
+    -- Problem Window
+    -- Indent Guide, Git Integration
+
+    use {
+        "glepnir/dashboard-nvim",
+        event = "BufWinEnter",
+        config = function()
+            require "plugins.dashboard"
+        end,
+    }
+    use {
+        "folke/which-key.nvim",
+        event = "BufWinEnter",
+        config = function()
+            require "plugins.which_key"
+        end,
+    }
+
+    use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {
+            { "nvim-lua/plenary.nvim", opt = true },
+            { "kyazdani42/nvim-web-devicons", opt = true },
+            { "MunifTanjim/nui.nvim", opt = true },
+        },
+        event = "BufWinEnter",
+        config = function()
+            require "plugins.neo_tree"
+        end,
+    }
+
     use {
         "akinsho/bufferline.nvim",
         tag = "v3.*",
@@ -84,16 +116,12 @@ return packer.startup(function(use)
             require "plugins.buffer_line"
         end,
     }
+
     use {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-        },
+        "akinsho/toggleterm.nvim",
+        tag = "*",
         config = function()
-            require "plugins.neo_tree"
+            require "plugins.toggle_term"
         end,
     }
     use {
@@ -112,112 +140,14 @@ return packer.startup(function(use)
     use {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.0",
-        cmd = "Telescope",
+        requires = "telescope-fzf-native.nvim",
+        -- cmd = "Telescope",
         after = { "telescope-fzf-native.nvim" },
         config = function()
             require "plugins.telescope"
         end,
     }
-    use {
-        "akinsho/toggleterm.nvim",
-        tag = "*",
-    }
 
-    -- lsp
-
-    use { "neovim/nvim-lspconfig" }
-
-    use { "williamboman/mason.nvim" }
-
-    use { "williamboman/mason-lspconfig.nvim" }
-
-    use {
-        "hrsh7th/nvim-cmp",
-        config = function()
-            require "lsp.nvim_cmp"
-        end,
-    }
-
-    use { "hrsh7th/cmp-nvim-lsp" }
-    use { "hrsh7th/cmp-buffer" }
-    use { "hrsh7th/cmp-path" }
-    use { "hrsh7th/cmp-cmdline" }
-    use { "saadparwaiz1/cmp_luasnip" }
-    use { "L3MON4D3/LuaSnip" }
-    use { "hrsh7th/cmp-nvim-lua" }
-
-    use {
-        "rafamadriz/friendly-snippets",
-        module = { "cmp", "cmp_nvim_lsp" },
-        event = "InsertEnter",
-    }
-    use { "onsails/lspkind.nvim" }
-    use {
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = function()
-            require "lsp.saga"
-        end,
-    }
-    use {
-        "jose-elias-alvarez/null-ls.nvim",
-        "jayp0521/mason-null-ls.nvim",
-    }
-    use {
-        "windwp/nvim-autopairs",
-        after = "nvim-cmp",
-        config = function()
-            require "plugins.auto_pairs"
-        end,
-    }
-
-    use {
-        "glepnir/dashboard-nvim",
-        event = "BufWinEnter",
-        config = function()
-            require "plugins.dashboard"
-        end,
-    }
-
-    use { "lukas-reineke/indent-blankline.nvim", event = "BufRead" }
-    use { "norcalli/nvim-colorizer.lua", event = "BufRead" }
-    use {
-        "lewis6991/gitsigns.nvim",
-        config = function()
-            require "plugins.gitsigns"
-        end,
-    }
-    -- lua with packer.nvim
-    use {
-        "max397574/better-escape.nvim",
-        event = "InsertEnter",
-        config = function()
-            require("better_escape").setup()
-        end,
-    }
-
-    use {
-        "folke/which-key.nvim",
-    }
-    use {
-        "numToStr/Comment.nvim",
-    }
-    use "folke/lsp-colors.nvim"
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = function()
-            local ts_update =
-                require("nvim-treesitter.install").update { with_sync = true }
-            ts_update()
-        end,
-        config = function()
-            require "plugins.tree_sitter"
-        end,
-    }
-
-    use { "windwp/nvim-ts-autotag" }
-    use { "p00f/nvim-ts-rainbow" }
-    -- Lua
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -229,7 +159,107 @@ return packer.startup(function(use)
             }
         end,
     }
-    -- bootstrap packer
+
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        event = "BufRead",
+    }
+
+    use {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require "plugins.gitsigns"
+        end,
+    }
+
+    -- [[ Code Editor ]]
+    -- Bracket Pairs, Toggle Comment, Easy escape
+    -- CSS Highlight
+    use {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        after = "nvim-cmp",
+        config = function()
+            require "plugins.auto_pairs"
+        end,
+    }
+    use {
+        "numToStr/Comment.nvim",
+        config = function()
+            require "plugins.comment"
+        end,
+    }
+    use {
+        "max397574/better-escape.nvim",
+        event = "InsertEnter",
+        config = function()
+            require("better_escape").setup()
+        end,
+    }
+    use {
+        "norcalli/nvim-colorizer.lua",
+        event = "BufRead",
+    }
+
+    -- [[ Better Syntax Analysis ]]
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = function()
+            local ts_update =
+                require("nvim-treesitter.install").update { with_sync = true }
+            ts_update()
+        end,
+        config = function()
+            require "plugins.tree_sitter"
+        end,
+    }
+    use { "windwp/nvim-ts-autotag" }
+    use { "p00f/nvim-ts-rainbow" }
+
+    -- [[ Language Server Protocol and Snippet Engine ]]
+    use { "neovim/nvim-lspconfig" }
+    use { "williamboman/mason.nvim" }
+    use { "williamboman/mason-lspconfig.nvim" }
+
+    use {
+        "hrsh7th/nvim-cmp",
+        config = function()
+            require "lsp.nvim_cmp"
+        end,
+    }
+    use { "hrsh7th/cmp-nvim-lsp" } -- builtin lsp complete
+    use { "hrsh7th/cmp-buffer" }
+    use { "hrsh7th/cmp-path" }
+    use { "hrsh7th/cmp-cmdline" }
+
+    use { "L3MON4D3/LuaSnip" } -- snippet engine
+
+    -- snippet sources
+    use { "hrsh7th/cmp-nvim-lua" }
+    use { "saadparwaiz1/cmp_luasnip" }
+
+    -- vscode like auto complete
+    use {
+        "rafamadriz/friendly-snippets",
+        module = { "cmp", "cmp_nvim_lsp" },
+        event = "InsertEnter",
+    }
+    use { "onsails/lspkind.nvim" } -- icon inside autocomplete window
+    use {
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function()
+            require "lsp.saga"
+        end,
+    } -- better goto navigation
+    use "folke/lsp-colors.nvim" -- customize lsp colors
+
+    -- [[ Linter and Formatter ]]
+    use {
+        "jose-elias-alvarez/null-ls.nvim",
+        "jayp0521/mason-null-ls.nvim",
+    }
+
     if packer_bootstrap then
         packer.sync()
     end
