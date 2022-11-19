@@ -202,7 +202,6 @@ return packer.startup(function(use)
     }
     use {
         "norcalli/nvim-colorizer.lua",
-        event = "BufRead",
         config = function()
             require "plugins.colorizer"
         end,

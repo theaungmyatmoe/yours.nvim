@@ -5,6 +5,9 @@ end
 
 telescope.setup {
     defaults = {
+        layout_config = {
+            prompt_position = "top",
+        },
         prompt_prefix = " 🔭 ",
         selection_caret = "➜ ",
         width = 0.87,
@@ -12,14 +15,7 @@ telescope.setup {
         file_ignore_patterns = {
             "undo",
         },
-        mappings = {
-            i = {
-                -- map actions.which_key to <C-h> (default: <C-/>)
-                -- actions.which_key shows the mappings for your picker,
-                -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                -- ["<C-h>"] = "which_key"
-            },
-        },
+        mappings = {},
     },
     pickers = {
         find_files = {

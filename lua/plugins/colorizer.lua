@@ -1,7 +1,9 @@
-require("colorizer").setup {
-    css = {
-        rgb_fn = true,
-    },
+local ok, colorizer = pcall(require, "colorizer")
+
+colorizer.setup {
+    "css",
     "javascript",
-    html = { mode = "background" },
+    html = {
+        mode = "foreground",
+    },
 }
