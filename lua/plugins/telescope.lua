@@ -9,6 +9,9 @@ telescope.setup {
         selection_caret = "➜ ",
         width = 0.87,
         height = 0.80,
+        file_ignore_patterns = {
+            "undo",
+        },
         mappings = {
             i = {
                 -- map actions.which_key to <C-h> (default: <C-/>)
@@ -22,7 +25,7 @@ telescope.setup {
         find_files = {
             theme = "dropdown",
             previewer = false,
-            prompt_title = "Search Files",
+            prompt_title = false,
         },
     },
     extensions = {},

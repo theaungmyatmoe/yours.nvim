@@ -160,11 +160,7 @@ return packer.startup(function(use)
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
-            require("trouble").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
+            require "plugins.trouble"
         end,
     }
 
@@ -207,6 +203,9 @@ return packer.startup(function(use)
     use {
         "norcalli/nvim-colorizer.lua",
         event = "BufRead",
+        config = function()
+            require "plugins.colorizer"
+        end,
     }
 
     -- [[ Better Syntax Analysis ]]

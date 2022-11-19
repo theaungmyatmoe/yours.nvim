@@ -8,8 +8,10 @@ vim.cmd [[
 nnoremap <C-q> :q!<CR>
 nnoremap <C-w> :bdelete<CR>
 ]]
+
 keymap.set("i", "<C-s>", ":w<CR>")
 keymap.set("n", "<C-a>", "gg<S-v>G")
+
 -- remove searched highlight
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
@@ -46,3 +48,11 @@ keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<cr>") -- find string in 
 keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
+
+-- trobule
+keymap.set(
+    "n",
+    "<leader>xx",
+    "<cmd>TroubleToggle<cr>",
+    { silent = true, noremap = true }
+)
