@@ -239,7 +239,7 @@ return packer.startup(function(use)
 
     use {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter", -- this make disable icon color
+        -- event = "InsertEnter", -- this make disable icon color
         wants = { "LuaSnip" },
         requires = { --- Autocompletion
             { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
