@@ -80,6 +80,19 @@ cmp.setup {
             require("luasnip").lsp_expand(args.body)
         end,
     },
+    duplicates = {
+        nvim_lsp = 1,
+        luasnip = 1,
+        -- cmp_tabnine = 1,
+        buffer = 1,
+        path = 1,
+    },
+    experimental = {
+        ghost_text = false,
+    },
+    completion = {
+        keyword_length = 1,
+    },
     mapping = cmp.mapping.preset.insert {
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
