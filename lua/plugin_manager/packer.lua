@@ -220,8 +220,9 @@ return packer.startup(function(use)
     }
     use {
         "VonHeikemen/searchbox.nvim",
+        event = "BufWinEnter",
         requires = {
-            { "MunifTanjim/nui.nvim" },
+            { "MunifTanjim/nui.nvim", opt = true },
         },
     }
 
