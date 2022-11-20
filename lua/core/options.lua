@@ -56,7 +56,8 @@ opt.signcolumn = "yes" -- enable specific highlights in debug mode
 -- backspace settings
 opt.backspace = "indent,eol,start"
 -- enable native clipboard instead of vim default clipboard behavior
-opt.clipboard:append "unnamedplus"
+-- opt.clipboard:append "unnamedplus"
+vim.opt.clipboard:prepend { "unnamed", "unnamedplus" }
 
 -- split windows
 opt.splitright = true

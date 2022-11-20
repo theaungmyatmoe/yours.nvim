@@ -9,6 +9,7 @@ nnoremap <C-q> :q!<CR>
 nnoremap <C-w> :bdelete<CR>
 ]]
 
+keymap.set("n", "x", '"_x') -- backward delete
 keymap.set("i", "<C-s>", ":w<CR>")
 keymap.set("n", "<C-a>", "gg<S-v>G")
 

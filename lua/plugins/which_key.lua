@@ -1,7 +1,14 @@
 local ok, whichkey = pcall(require, "which-key")
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit =
-    Terminal:new { cmd = "lazygit", hidden = true, direction = "float" }
+local lazygit = Terminal:new {
+    cmd = "lazygit",
+    hidden = true,
+    direction = "float",
+    float_opts = {
+        width = vim.o.columns - 6,
+        height = vim.o.lines - 5,
+    },
+}
 local float_term = Terminal:new { direction = "float" }
 
 if not ok then
@@ -45,8 +52,8 @@ local mappings = {
         name = "Terminal",
         t = { "<cmd>ToggleTerm<cr>", "Integrated Terminal" },
         f = { float_term_toggle, "Float Terminal" },
-        l = { _lazygit_toggle, "Toggle Lazy Git" },
     },
+    l = { _lazygit_toggle, "Toggle Lazy Git" },
 }
 
 whichkey.setup(conf)
