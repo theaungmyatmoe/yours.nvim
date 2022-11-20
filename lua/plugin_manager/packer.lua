@@ -21,10 +21,10 @@ local packer_bootstrap = ensure_packer()
 
 -- auto command which reloads nvim and installs/updates/removes plugins when file is saved
 vim.cmd [[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost packer.lua source <afile> | PackerSync
-augroup end
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost packer.lua source <afile> | PackerSync
+    augroup end
 ]]
 
 local ok, packer = pcall(require, "packer")

@@ -8,8 +8,9 @@ telescope.setup {
         layout_config = {
             prompt_position = "top",
         },
-        prompt_prefix = " 🔭 ",
-        selection_caret = "➜ ",
+        prompt_prefix = " ",
+        selection_caret = "❯ ",
+        path_display = { "truncate" },
         width = 0.87,
         height = 0.80,
         file_ignore_patterns = {
