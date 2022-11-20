@@ -251,7 +251,7 @@ return packer.startup(function(use)
             { "L3MON4D3/LuaSnip" },
         },
         config = function()
-            require "lsp.nvim_cmp"
+            require "lsp.cmp"
         end,
     }
     use { "hrsh7th/cmp-nvim-lsp" } -- builtin lsp complete
