@@ -177,8 +177,19 @@ return packer.startup(function(use)
     }
 
     -- [[ Code Editor ]]
+    -- Fold
     -- Bracket Pairs, Toggle Comment, Easy escape
     -- CSS Highlight
+
+    use {
+        "kevinhwang91/nvim-ufo",
+        requires = "kevinhwang91/promise-async",
+        event = "BufRead",
+        config = function()
+            require "plugins.ufo"
+        end,
+    }
+
     use {
         "windwp/nvim-autopairs",
         event = "InsertEnter",

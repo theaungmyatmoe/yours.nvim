@@ -1,7 +1,10 @@
 vim.cmd [[
-  filetype plugin indent on
-  syntax on
+    filetype plugin indent on
+    syntax on
 ]]
+
+vim.opt.guifont = { "JetbrainsMono Nerd Font", ":h15" }
+
 -- unload nvim default plugins
 vim.opt.termguicolors = true
 vim.g.loaded_gzip = false
@@ -18,11 +21,11 @@ vim.g.loaded_ruby_provider = false
 local opt = vim.opt
 
 opt.timeoutlen = 300
+opt.updatetime = 300 -- faster completion
 opt.title = true -- set the title of window to the value of the titlestring
 opt.titlestring = "%<%F - nvim" -- what the title of the window will be set to
 opt.undofile = true -- enable persistent undo
 opt.undodir = vim.fn.stdpath "config" .. "/undo"
-opt.updatetime = 300 -- faster completion
 
 -- line number
 opt.number = true
@@ -53,7 +56,7 @@ opt.signcolumn = "yes" -- enable specific highlights in debug mode
 -- backspace settings
 opt.backspace = "indent,eol,start"
 -- enable native clipboard instead of vim default clipboard behavior
--- opt.clipboard:append "unnamedplus"
+opt.clipboard:append "unnamedplus"
 
 -- split windows
 opt.splitright = true
@@ -62,14 +65,4 @@ opt.splitbelow = true
 -- set dash as normal letter instead of divide behavior
 opt.iskeyword:append "-"
 
-opt.guifont = { settings.appearance.font, "h" .. settings.appearance.font_size }
 opt.showmode = false
-
--- opt.foldmethod = "expr"
--- opt.foldexpr = "nvim_treesitter#foldexpr()"
---
---Lua:
--- vim.g.material_style = "oceanic"
-
-vim.g.sonokai_style = "shusia"
-vim.g.sonokai_better_performance = 1
