@@ -47,7 +47,6 @@ cmp.setup {
     },
     window = {
         completion = {
-            -- border = "rounded",
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             col_offset = -3,
         },
@@ -110,10 +109,10 @@ cmp.setup {
         ["<CR>"] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     sources = cmp.config.sources {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
+        { name = "nvim_lsp", priority = "10" },
+        { name = "luasnip", priority = "8" },
+        { name = "buffer", priority = "5" },
+        { name = "path", priority = "2" },
     },
 }
 

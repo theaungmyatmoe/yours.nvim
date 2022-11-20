@@ -26,7 +26,7 @@ ufo.setup {
             winblend = 0,
         },
         mappings = {
-            scrollU = "<C-u>",j
+            scrollU = "<C-u>",
             scrollD = "<C-d>",
         },
     },
