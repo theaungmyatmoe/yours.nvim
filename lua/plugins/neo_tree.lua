@@ -18,7 +18,7 @@ neo_tree.setup {
             indent_marker = "│",
             last_indent_marker = "└",
             highlight = "NeoTreeIndentMarker",
-            with_expanders = true,
+            with_expanders = false,
             expander_collapsed = "",
             expander_expanded = "",
             expander_highlight = "NeoTreeExpander",
