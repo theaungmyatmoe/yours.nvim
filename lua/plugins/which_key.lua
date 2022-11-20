@@ -39,14 +39,19 @@ local opts = {
 }
 
 local mappings = {
-    ["q"] = { "<cmd>q!<cr>", "Quit" },
-    f = {
-        name = "File",
-        f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-    },
     e = {
         name = "File Explorer",
         e = { "<cmd>NeoTreeFloatToggle<CR>", "Float File Explorer" },
+    },
+
+    f = {
+        name = "File Finder",
+        f = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    },
+    s = {
+        name = "Search",
+        s = { "<cmd>SearchBoxMatchAll<cr>", "Search Text" },
+        r = { "<cmd>SearchBoxReplace<cr>", "Replace Text" },
     },
     t = {
         name = "Terminal",

@@ -40,7 +40,6 @@ keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- file browser
-keymap.set("n", "<leader>ee", ":NeoTreeFloatToggle<CR>", { silent = true })
 keymap.set("n", "<A-1>", ":NeoTreeFocusToggle<CR>", { silent = true })
 
 -- telescope
@@ -57,3 +56,6 @@ keymap.set(
     "<cmd>TroubleToggle<cr>",
     { silent = true, noremap = true }
 )
+
+-- search inside file
+keymap.set("n", "<C-f>", "<cmd>SearchBoxMatchAll<cr>")

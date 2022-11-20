@@ -180,6 +180,7 @@ return packer.startup(function(use)
     -- Fold
     -- Bracket Pairs, Toggle Comment, Easy escape
     -- CSS Highlight
+    -- Text Searching
 
     use {
         "kevinhwang91/nvim-ufo",
@@ -216,6 +217,12 @@ return packer.startup(function(use)
         config = function()
             require "plugins.colorizer"
         end,
+    }
+    use {
+        "VonHeikemen/searchbox.nvim",
+        requires = {
+            { "MunifTanjim/nui.nvim" },
+        },
     }
 
     -- [[ Better Syntax Analysis ]]
