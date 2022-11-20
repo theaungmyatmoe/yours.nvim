@@ -22,6 +22,7 @@ local format = lspkind.cmp_format {
 }
 
 luasnip.config.set_config {
+    history = true,
     update_events = "TextChanged,TextChangedI",
     delete_check_events = "TextChanged,InsertLeave",
 }
