@@ -291,7 +291,6 @@ return packer.startup(function(use)
             require "lsp.saga"
         end,
     } -- better goto navigation
-    use "folke/lsp-colors.nvim" -- customize lsp colors
 
     -- [[ Linter and Formatter ]]
     use {

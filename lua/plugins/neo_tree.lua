@@ -6,7 +6,7 @@ end
 
 neo_tree.setup {
     close_if_last_window = false,
-    enable_diagnostics = true,
+    enable_diagnostics = false,
     enable_git_status = true,
     popup_border_style = "rounded",
     sort_case_insensitive = false,
@@ -35,6 +35,18 @@ neo_tree.setup {
             use_git_status_colors = true,
         },
         git_status = {
+            window = {
+                position = "float",
+                mappings = {
+                    ["A"] = "git_add_all",
+                    ["gu"] = "git_unstage_file",
+                    ["ga"] = "git_add_file",
+                    ["gr"] = "git_revert_file",
+                    ["gc"] = "git_commit",
+                    ["gp"] = "git_push",
+                    ["gg"] = "git_commit_and_push",
+                },
+            },
             symbols = {
                 added = "",
                 deleted = "",
@@ -55,4 +67,18 @@ neo_tree.setup {
         },
     },
     window = { width = 25 },
+    event_handlers = {
+        {
+            event = "vim_buffer_enter",
+            handler = function(_)
+                if vim.bo.filetype == "neo-tree" then
+                    vim.wo.signcolumn = "auto"
+                end
+            end,
+        },
+    },
+    source_selector = {
+        winbar = false,
+        statusline = false,
+    },
 }

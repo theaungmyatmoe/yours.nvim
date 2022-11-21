@@ -3,7 +3,7 @@ local ok, saga = pcall(require, "lspsaga")
 if not ok then
     return
 end
-saga.init_lsp_saga({
+saga.init_lsp_saga {
     border_style = "rounded",
     -- keybinds for navigation in lspsaga window
     move_in_saga = { prev = "<C-p>", next = "<C-n>" },
@@ -15,4 +15,4 @@ saga.init_lsp_saga({
     definition_action_keys = {
         edit = "<CR>",
     },
-})
+}
