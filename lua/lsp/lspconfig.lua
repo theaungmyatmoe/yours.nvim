@@ -146,4 +146,10 @@ lspconfig.phpactor.setup {
     },
 }
 
-lspconfig["volar"].setup {}
+lspconfig["volar"].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {
+        "vue",
+    },
+}
