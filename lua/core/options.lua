@@ -67,3 +67,6 @@ opt.splitbelow = true
 opt.iskeyword:append "-"
 
 opt.showmode = false
+
+-- auto completion menu height
+vim.opt.pumheight = 10

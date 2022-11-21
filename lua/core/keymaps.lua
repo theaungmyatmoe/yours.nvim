@@ -1,3 +1,11 @@
+local function map(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 vim.g.mapleader = " " -- space for leader key
 
 local keymap = vim.keymap
@@ -9,7 +17,7 @@ nnoremap <C-q> :q!<CR>
 nnoremap <C-w> :Bdelete<CR>
 ]]
 
-keymap.set("n", "<C-s>", ":update<cr>", { silent = true, noremap = true })
+map("n", "<C-s>", ":update<cr>", { silent = true, noremap = true })
 
 keymap.set("n", "x", '"_x') -- backward delete
 keymap.set("i", "<C-s>", ":w<CR>")

@@ -27,8 +27,8 @@ luasnip.config.set_config {
     delete_check_events = "TextChanged,InsertLeave",
 }
 
--- snippet lazy loading
-require("luasnip.loaders.from_vscode").lazy_load()
+-- snippet engines
+require("luasnip.loaders.from_vscode").lazy_load() -- friendly snippets
 
 -- check for supertab completion
 local has_words_before = function()
@@ -83,7 +83,6 @@ cmp.setup {
     duplicates = {
         nvim_lsp = 1,
         luasnip = 1,
-        -- cmp_tabnine = 1,
         buffer = 1,
         path = 1,
     },
@@ -123,9 +122,10 @@ cmp.setup {
     },
     sources = cmp.config.sources {
         { name = "nvim_lsp", priority = "10" },
-        { name = "luasnip", priority = "8" },
+        { name = "cmp-tw2css" },
         { name = "buffer", priority = "5" },
         { name = "path", priority = "2" },
+        { name = "luasnip", priority = "7" },
     },
 }
 

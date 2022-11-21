@@ -268,7 +268,12 @@ return packer.startup(function(use)
             { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
             { "hrsh7th/cmp-path", after = "nvim-cmp" },
             { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-            { "L3MON4D3/LuaSnip" },
+            { "L3MON4D3/LuaSnip", event = "InsertCharPre" },
+            {
+                "jcha0713/cmp-tw2css",
+                event = "InsertEnter",
+                ft = { "html", "css" },
+            },
         },
         config = function()
             require "lsp.cmp"
@@ -280,7 +285,7 @@ return packer.startup(function(use)
     use {
         "rafamadriz/friendly-snippets",
         module = { "cmp", "cmp_nvim_lsp" },
-        event = "InsertEnter",
+        event = "InsertCharPre",
     }
     use { "onsails/lspkind.nvim" } -- icon inside autocomplete window
     use {
