@@ -181,7 +181,7 @@ return packer.startup(function(use)
     -- Bracket Pairs, Toggle Comment, Easy escape
     -- CSS Highlight
     -- Text Searching
-
+    -- Buffer Deletion
     use {
         "kevinhwang91/nvim-ufo",
         requires = "kevinhwang91/promise-async",
@@ -225,6 +225,7 @@ return packer.startup(function(use)
             { "MunifTanjim/nui.nvim", opt = true },
         },
     }
+    use { "famiu/bufdelete.nvim" }
 
     -- [[ Better Syntax Analysis ]]
     use {

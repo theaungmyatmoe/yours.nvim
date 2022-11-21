@@ -6,7 +6,7 @@ local keymap = vim.keymap
 
 vim.cmd [[ 
 nnoremap <C-q> :q!<CR>
-nnoremap <C-w> :bdelete<CR>
+nnoremap <C-w> :Bdelete<CR>
 ]]
 
 keymap.set("n", "x", '"_x') -- backward delete
