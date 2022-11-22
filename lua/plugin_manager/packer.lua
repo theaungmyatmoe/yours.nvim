@@ -264,6 +264,7 @@ return packer.startup(function(use)
     -- [[ Additional lsp plugins ]]
     use {
         "lvimuser/lsp-inlayhints.nvim",
+        event = "LspAttach",
         config = function()
             require "lsp.lsp_inlayhints"
         end,
