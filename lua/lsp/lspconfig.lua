@@ -56,22 +56,22 @@ lspconfig["html"].setup {
     on_attach = on_attach,
 }
 
--- lspconfig["tsserver"].setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     filetypes = {
---         "javascript",
---         "javascriptreact",
---         "javascript.jsx",
---         "typescript",
---         "typescriptreact",
---         "typescript.tsx",
---     },
---     root_dir = function()
---         return vim.loop.cwd()
---     end,
--- }
---
+lspconfig["tsserver"].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+    },
+    root_dir = function()
+        return vim.loop.cwd()
+    end,
+}
+
 -- configure css server
 lspconfig["cssls"].setup {
     capabilities = capabilities,
@@ -146,24 +146,24 @@ lspconfig.phpactor.setup {
     },
 }
 
-lspconfig["volar"].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = {
-        "typescript",
-        "javascript",
-        "javascriptreact",
-        "typescriptreact",
-        "vue",
-        "json",
-    },
-    settings = {
-        volar = {
-            codeLens = {
-                references = true,
-                pugTools = true,
-                scriptSetupTools = true,
-            },
-        },
-    },
-}
+-- lspconfig["volar"].setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = {
+--         "typescript",
+--         "javascript",
+--         "javascriptreact",
+--         "typescriptreact",
+--         "vue",
+--         "json",
+--     },
+--     settings = {
+--         volar = {
+--             codeLens = {
+--                 references = true,
+--                 pugTools = true,
+--                 scriptSetupTools = true,
+--             },
+--         },
+--     },
+-- }

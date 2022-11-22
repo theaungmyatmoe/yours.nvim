@@ -280,6 +280,10 @@ return packer.startup(function(use)
         end,
     }
     use { "hrsh7th/cmp-nvim-lsp" } -- builtin lsp complete
+    -- better sorting
+    use {
+        "lukas-reineke/cmp-under-comparator",
+    }
 
     -- vscode like auto complete
     use {
