@@ -243,12 +243,16 @@ return packer.startup(function(use)
     use { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" }
 
     -- [[ Language Server Protocol and Snippet Engine ]]
+
+    -- native lsp
     use {
         "neovim/nvim-lspconfig",
         config = function()
             require "lsp.lspconfig"
         end,
     }
+
+    -- lsp installer
     use { "williamboman/mason.nvim" }
     use {
         "williamboman/mason-lspconfig.nvim",
@@ -256,6 +260,10 @@ return packer.startup(function(use)
             require "lsp.mason"
         end,
     }
+
+    -- [[ Additional lsp plugins ]]
+
+    use { "jose-elias-alvarez/typescript.nvim" }
 
     use {
         "hrsh7th/nvim-cmp",
