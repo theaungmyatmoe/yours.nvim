@@ -10,9 +10,23 @@ end
 
 local keymap = vim.keymap
 
+-- inlay cmd
+vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+
 local on_attach = function(client, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
+    vim.api.nvim_create_autocmd("LspAttach", {
+        group = "LspAttach_inlayhints",
+        callback = function(args)
+            if not (args.data and args.data.client_id) then
+                return
+            end
+            local bufnr = args.buf
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            require("lsp-inlayhints").on_attach(client, bufnr)
+        end,
+    })
     -- set keybinds for lsp saga
     keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
     keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
@@ -77,6 +91,30 @@ require("typescript").setup {
         root_dir = function()
             return vim.loop.cwd()
         end,
+        settings = {
+            javascript = {
+                inlayHints = {
+                    includeInlayEnumMemberValueHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                },
+            },
+            typescript = {
+                inlayHints = {
+                    includeInlayEnumMemberValueHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                },
+            },
+        },
     },
 }
 
@@ -122,6 +160,15 @@ lspconfig["sumneko_lua"].setup {
                     [vim.fn.expand "$VIMRUNTIME/lua"] = true,
                     [vim.fn.stdpath "config" .. "/lua"] = true,
                 },
+            },
+            hint = {
+                arrayIndex = "Enable",
+                await = true,
+                enable = true,
+                paramName = "All",
+                paramType = "",
+                semicolon = "SameLine",
+                setType = true,
             },
         },
     },

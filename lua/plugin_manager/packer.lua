@@ -262,6 +262,12 @@ return packer.startup(function(use)
     }
 
     -- [[ Additional lsp plugins ]]
+    use {
+        "lvimuser/lsp-inlayhints.nvim",
+        config = function()
+            require "lsp.lsp_inlayhints"
+        end,
+    }
 
     use { "jose-elias-alvarez/typescript.nvim" }
 
@@ -276,7 +282,7 @@ return packer.startup(function(use)
             { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
             { "hrsh7th/cmp-path", after = "nvim-cmp" },
             { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-            { "L3MON4D3/LuaSnip", event = "InsertCharPre" },
+            { "L3MON4D3/LuaSnip", event = "InsertEnter" },
             {
                 "jcha0713/cmp-tw2css",
                 event = "InsertEnter",
