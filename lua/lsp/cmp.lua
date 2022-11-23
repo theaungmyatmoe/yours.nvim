@@ -43,7 +43,7 @@ end
 
 cmp.setup {
     view = {
-        entries = { name = "custom", selection_order = "near_cursor" },
+        entries = { name = "custom", selection_order = "top_down" },
     },
     window = {
         completion = {
