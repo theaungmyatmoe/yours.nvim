@@ -331,6 +331,8 @@ return packer.startup(function(use)
         end,
     } -- formatter
 
+    use "simrat39/symbols-outline.nvim"
+
     if packer_bootstrap then
         packer.sync()
     end

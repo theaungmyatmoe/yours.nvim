@@ -4,6 +4,11 @@ if not ok then
     return
 end
 
+local lsp_saga_outline = {
+    sections = { lualine_a = { "filetype" } },
+    filetypes = { "lspsagaoutline" },
+}
+
 lualine.setup {
     options = {
         icons_enabled = true,
@@ -14,7 +19,7 @@ lualine.setup {
             statusline = {},
             winbar = {},
         },
-        ignore_focus = {},
+        ignore_focus = { "lspinfo" },
         always_divide_middle = true,
         globalstatus = false,
         refresh = {
@@ -44,5 +49,11 @@ lualine.setup {
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = {},
+    extensions = {
+        "neo-tree",
+        "toggleterm",
+        "nvim-dap-ui",
+        "symbols-outline",
+        lsp_saga_outline,
+    },
 }
