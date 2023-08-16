@@ -32,4 +32,4 @@ nvim example.txt
 
 ## License
 
-[MIT](./LICENSE)
+[BSD 3-Clause License](./LICENSE)
