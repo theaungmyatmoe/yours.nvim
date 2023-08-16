@@ -142,19 +142,10 @@ return packer.startup(function(use)
 
     use {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.0",
-        requires = {
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                run = "make",
-            },
-            { "nvim-lua/plenary.nvim" },
-        },
-        cmd = "Telescope",
-        config = function()
-            require "plugins.telescope"
-        end,
+        requires = { { "nvim-lua/plenary.nvim" } },
     }
+
+    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
     use {
         "folke/trouble.nvim",
@@ -308,7 +299,7 @@ return packer.startup(function(use)
     }
     use { "onsails/lspkind.nvim" } -- icon inside autocomplete window
     use {
-        "glepnir/lspsaga.nvim",
+        "nvimdev/lspsaga.nvim",
         branch = "main",
         event = "BufRead",
         config = function()
